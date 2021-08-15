@@ -5,7 +5,7 @@ import {v1} from "uuid";
 
 
 function App() {
-
+    console.log('git')
     let [task, setTask] = useState([
         {id: v1(), tasks: 'bear', isDone: true},
         {id: v1(), tasks: 'milk', isDone: false},
