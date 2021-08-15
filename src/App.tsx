@@ -1,17 +1,24 @@
 import React, {useState} from 'react';
 import './App.css';
 import {Todolist} from "./Todolist";
+import {v1} from "uuid";
 
 
 function App() {
 
     let [task, setTask] = useState([
-        {id: 1, tasks: 'bear', isDone: true},
-        {id: 2, tasks: 'milk', isDone: false},
-        {id: 3, tasks: 'water', isDone: true}
+        {id: v1(), tasks: 'bear', isDone: true},
+        {id: v1(), tasks: 'milk', isDone: false},
+        {id: v1(), tasks: 'water', isDone: true}
     ]);
 
-    function remove(x: number) {
+    function addNewTask(titleTodolist:string) {
+        let newTask = {id: v1(), tasks: titleTodolist, isDone: true}
+        let newArrayTasks = [newTask, ...task]
+        setTask(newArrayTasks)
+    }
+
+    function remove(x: string) {
         let delTask = task.filter(f => f.id != x);
         setTask(delTask)
     }
@@ -25,9 +32,9 @@ function App() {
         filteredTodolist = task.filter(f => f.isDone === true);
     }
 
-    const changeFilter = (value:'all' | 'active' | 'completed') => {
+    const changeFilter = (value: 'all' | 'active' | 'completed') => {
         return (
-setFilter(value)
+            setFilter(value)
         )
     }
 
@@ -38,6 +45,7 @@ setFilter(value)
                       data={filteredTodolist}
                       remove={remove}
                       changeFilter={changeFilter}
+                      addNewTask={addNewTask}
             />
 
 
