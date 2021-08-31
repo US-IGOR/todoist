@@ -1,4 +1,6 @@
 import React, {ChangeEvent, useState} from "react";
+import {Button, IconButton, TextField} from "@material-ui/core";
+import {Add} from "@material-ui/icons";
 
 type InputClonesType = {
 
@@ -12,7 +14,7 @@ export const InputClones = (props: InputClonesType) => {
         if (titleTodolist.trim() !== '') {
             props.addNewItem(titleTodolist.trim())
             setTitleTodolist('')
-        } else setError('Error/ошибка')
+        } else setError('Error')
     }
     const addNewTaskOnKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
         setError(null);
@@ -28,12 +30,18 @@ export const InputClones = (props: InputClonesType) => {
 
 
     return (<div>
-            <input value={titleTodolist}
-                   onChange={addNewTaskOnChangeHandler}
-                   onKeyPress={addNewTaskOnKeyPressHandler}
+            <TextField value={titleTodolist}
+                       variant={"outlined"}
+                       label={'add task'}
+                       onChange={addNewTaskOnChangeHandler}
+                       onKeyPress={addNewTaskOnKeyPressHandler}
+                       error={!!error}
+                       helperText={error}
+
             />
-            <button onClick={addNewTask}>+</button>
-            {error && <div className='error-message'>{error}</div>}
+
+
+            <IconButton onClick={addNewTask} color={"primary"}><Add/></IconButton>
         </div>
     )
 }
