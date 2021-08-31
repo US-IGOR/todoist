@@ -106,6 +106,13 @@ function App() {
 
 
 
+   const changeTodolistTitle = (id:string, newTitle: string) => {
+       const todolist = todolists.find(f=> f.id=== id)
+       if(todolist)
+           todolist.title = newTitle
+       setTodolists([...todolists])
+   }
+
     return (
         <div className="App">
             <InputClones addNewItem={addTodolist}/>
@@ -129,6 +136,7 @@ function App() {
                                      filter={m.filter}
                                      id={m.id}
                                      deleteTodolist={deleteTodolist}
+                                     changeTodolistTitle={changeTodolistTitle}
                                     changeTitleTask={changeTitleTask}
                     />
                 })

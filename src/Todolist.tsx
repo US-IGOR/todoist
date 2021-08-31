@@ -13,6 +13,7 @@ type TodolistProrsType = {
     filter: string
     id: string
     deleteTodolist: (todoID: string) => void
+    changeTodolistTitle: (id:string, newTitle: string) => void
 }
 
 export type ArrayDataType = {
@@ -23,17 +24,6 @@ export type ArrayDataType = {
 
 
 export const Todolist = (props: TodolistProrsType) => {
-    let [titleTodolist, setTitleTodolist] = useState<string>('')
-    let [error, setError] = useState<string | null>('')
-
-
-    const addNewTaskHandler = () => {
-        if (titleTodolist.trim() !== '') {
-            props.addNewTask(titleTodolist.trim(), props.id)
-            setTitleTodolist('')
-        } else setError('Error/ошибка')
-    }
-
 
     const onAllClickHandler = () => {
         props.changeFilter('all', props.id)
@@ -45,9 +35,8 @@ export const Todolist = (props: TodolistProrsType) => {
         props.changeFilter('completed', props.id)
     }
 
-    const onRemoveTodoListHandler = () => {
-        props.deleteTodolist(props.id)
-    }
+    const onRemoveTodoListHandler = () => {props.deleteTodolist(props.id)}
+    const changeTodolistTitle = (newTitle:string) => {props.changeTodolistTitle(props.id,newTitle)}
 
     const addTask = (title: string) => {
         props.addNewTask(title, props.id)
@@ -56,7 +45,7 @@ export const Todolist = (props: TodolistProrsType) => {
     return (
 
         <div>
-            <div><h3>{props.title}</h3>
+            <div><h3><EditableSpan title={props.title} change={changeTodolistTitle}/></h3>
                 <button onClick={onRemoveTodoListHandler}>x</button>
             </div>
             <div>
