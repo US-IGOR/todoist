@@ -6,33 +6,24 @@ import {InputClones} from "./InputClones";
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
 
-
-function MenuIcon() {
-    return null;
+export type todolistsType = {
+    id: string,
+    title: string,
+    filter: string
+}
+export type TasksStateType = {
+    [key: string]: Array<ArrayDataType>
 }
 
 function App() {
 
-    type todolistsType = {
-        id: string,
-        title: string,
-        filter: string
-    }
-
-    type TasksStateType = {
-        [key: string]: Array<ArrayDataType>
-    }
-
     let todolistID_1 = v1()
     let todolistID_2 = v1()
-
 
     let [todolists, setTodolists] = useState<Array<todolistsType>>([
         {id: todolistID_1, title: 'What to learn?', filter: 'all'},
         {id: todolistID_2, title: 'What to buy?', filter: 'active'}
     ])
-
-
     let [taskObj, setTask] = useState<TasksStateType>(
         {
             [todolistID_1]: [
@@ -47,6 +38,7 @@ function App() {
             ]
         });
 
+    //tasks_func's
     function addNewTask(titleTodolist: string, todoID: string) {
         let t = taskObj[todoID]
         let newTask = {id: v1(), title: titleTodolist, isDone: false}
@@ -71,7 +63,6 @@ function App() {
         setTask({...taskObj});
     }
 
-
     function changeTitleTask(id: string, newTitle: string, todoID: string) {
         let t = taskObj[todoID]
         let findTaskStatus = t.find(f => f.id === id)
@@ -82,9 +73,7 @@ function App() {
     }
 
 
-    /* let [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all')*/
-
-
+    //toDOLists_func's
     const changeFilter = (value: 'all' | 'active' | 'completed', id: string) => {
 
         let todo = todolists.find(tl => tl.id === id)
@@ -110,7 +99,6 @@ function App() {
         })
     }
 
-
     const changeTodolistTitle = (id: string, newTitle: string) => {
         const todolist = todolists.find(f => f.id === id)
         if (todolist)
@@ -120,14 +108,11 @@ function App() {
 
     return (
         <div className="App">
-
             <AppBar position="static">
-                <Toolbar>
-                    <IconButton edge="start" color="inherit" aria-label="menu">
+                    <Toolbar>
+                        <IconButton edge="start" color="inherit" aria-label="menu">
                         <Menu/>
-
                     </IconButton>
-
                     <Typography variant="h6">
                         Todoooo
                     </Typography>
@@ -135,7 +120,7 @@ function App() {
                 </Toolbar>
             </AppBar>
             <Container fixed>
-                <Grid container style={ {padding: "20px"  }  }>
+                <Grid container style={{padding: "20px"}}>
                     <InputClones addNewItem={addTodolist}/>
                 </Grid>
                 <Grid container spacing={3}>
@@ -150,21 +135,21 @@ function App() {
                                 filteredTodolist = filteredTodolist.filter(f => f.isDone);
                             }
                             return <Grid item>
-                                <Paper elevation={10} style={ {padding: "10px"  }  }>
-                                <Todolist title={m.title}
-                                          key={m.id}
-                                          data={filteredTodolist}
-                                          remove={remove}
-                                          changeFilter={changeFilter}
-                                          addNewTask={addNewTask}
-                                          changeStatus={changeStatus}
-                                          filter={m.filter}
-                                          id={m.id}
-                                          deleteTodolist={deleteTodolist}
-                                          changeTodolistTitle={changeTodolistTitle}
-                                          changeTitleTask={changeTitleTask}
-                                />
-                            </Paper>
+                                <Paper elevation={10} style={{padding: "10px"}}>
+                                    <Todolist title={m.title}
+                                              key={m.id}
+                                              data={filteredTodolist}
+                                              remove={remove}
+                                              changeFilter={changeFilter}
+                                              addNewTask={addNewTask}
+                                              changeStatus={changeStatus}
+                                              filter={m.filter}
+                                              id={m.id}
+                                              deleteTodolist={deleteTodolist}
+                                              changeTodolistTitle={changeTodolistTitle}
+                                              changeTitleTask={changeTitleTask}
+                                    />
+                                </Paper>
                             </Grid>
                         })
                     }

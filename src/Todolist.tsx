@@ -26,7 +26,6 @@ export type ArrayDataType = {
 
 
 export const Todolist = (props: TodolistProrsType) => {
-
     const onAllClickHandler = () => {
         props.changeFilter('all', props.id)
     }
@@ -36,14 +35,12 @@ export const Todolist = (props: TodolistProrsType) => {
     const onCompletedClickHandler = () => {
         props.changeFilter('completed', props.id)
     }
-
     const onRemoveTodoListHandler = () => {
         props.deleteTodolist(props.id)
     }
     const changeTodolistTitle = (newTitle: string) => {
         props.changeTodolistTitle(props.id, newTitle)
     }
-
     const addTask = (title: string) => {
         props.addNewTask(title, props.id)
     }
@@ -51,7 +48,8 @@ export const Todolist = (props: TodolistProrsType) => {
     return (
 
         <div>
-            <div><h3><EditableSpan title={props.title} change={changeTodolistTitle}/>
+            <div>
+                <h3><EditableSpan title={props.title} change={changeTodolistTitle}/>
                 <IconButton onClick={onRemoveTodoListHandler}>
                     <Delete/>
                 </IconButton>
@@ -107,7 +105,6 @@ export const Todolist = (props: TodolistProrsType) => {
                     variant={props.filter === 'completed' ? 'contained' : 'text'}
                     onClick={onCompletedClickHandler}>Completed
                 </Button>
-
             </div>
         </div>
     )

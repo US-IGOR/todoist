@@ -3,9 +3,7 @@ import {Button, IconButton, TextField} from "@material-ui/core";
 import {Add} from "@material-ui/icons";
 
 type InputClonesType = {
-
     addNewItem: (titleTodolist: string) => void
-
 }
 export const InputClones = (props: InputClonesType) => {
     let [titleTodolist, setTitleTodolist] = useState<string>('')
