@@ -5,6 +5,8 @@ import {ArrayDataType, Todolist} from "./Todolist";
 import {InputClones} from "./InputClones";
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
+import {tasksReducer} from "./state/tasks-reducer";
+import {AddTodolistAC} from "./state/todolists-reducer";
 
 export type todolistsType = {
     id: string,
@@ -158,6 +160,10 @@ function App() {
         </div>
     );
 }
+
+
+
+
 
 
 export default App;

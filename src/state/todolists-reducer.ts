@@ -9,8 +9,8 @@ type ActionsType = RemoveTodolistACType |
     ChangeTodolistFilterACType
 
 
-type RemoveTodolistACType = ReturnType<typeof RemoveTodolistAC>
-type AddTodolistACType = ReturnType<typeof AddTodolistAC>
+export type RemoveTodolistACType = ReturnType<typeof RemoveTodolistAC>
+export type AddTodolistACType = ReturnType<typeof AddTodolistAC>
 type ChangeTodolistTitleACType = ReturnType<typeof ChangeTodolistTitleAC>
 type ChangeTodolistFilterACType = ReturnType<typeof ChangeTodolistFilterAC>
 
@@ -24,7 +24,7 @@ export const todolistsReducer = (state: Array<todolistsType>, action: ActionsTyp
             return [
                 ...state,
                 {
-                    id: v1(),
+                    id: action.todolistId,
                     title: action.title,
                     filter: 'all'
                 }
@@ -47,7 +47,6 @@ export const todolistsReducer = (state: Array<todolistsType>, action: ActionsTyp
     }
 }
 
-
 export const RemoveTodolistAC = (id: string) => {
     return {
         type: 'REMOVE-TODOLIST',
@@ -57,7 +56,8 @@ export const RemoveTodolistAC = (id: string) => {
 export const AddTodolistAC = ( title: string) => {
     return {
         type: 'ADD-TODOLIST',
-        title: title
+        title: title,
+        todolistId : v1()
     } as const
 }
 export const ChangeTodolistTitleAC = (id: string, title: string) => {
