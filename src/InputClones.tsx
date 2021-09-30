@@ -30,7 +30,7 @@ export const InputClones = (props: InputClonesType) => {
     return (<div>
             <TextField value={titleTodolist}
                        variant={"outlined"}
-                       label={'add task'}
+                       label={'add todooo'}
                        onChange={addNewTaskOnChangeHandler}
                        onKeyPress={addNewTaskOnKeyPressHandler}
                        error={!!error}

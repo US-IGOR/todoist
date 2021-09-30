@@ -4,7 +4,7 @@ import {EditableSpan} from "./EditableSpan";
 import {Button, Checkbox, IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
 
-type TodolistProrsType = {
+type TodolistPropsType = {
     title: string,
     remove: (x: string, todoID: string) => void,
     changeFilter: (value: 'all' | 'active' | 'completed', id: string) => void,
@@ -25,7 +25,7 @@ export type ArrayDataType = {
 }
 
 
-export const Todolist = (props: TodolistProrsType) => {
+export const Todolist = (props: TodolistPropsType) => {
     const onAllClickHandler = () => {
         props.changeFilter('all', props.id)
     }
@@ -50,30 +50,23 @@ export const Todolist = (props: TodolistProrsType) => {
         <div>
             <div>
                 <h3><EditableSpan title={props.title} change={changeTodolistTitle}/>
-                <IconButton onClick={onRemoveTodoListHandler}>
-                    <Delete/>
-                </IconButton>
-            </h3>
+                    <IconButton onClick={onRemoveTodoListHandler}>
+                        <Delete/>
+                    </IconButton>
+                </h3>
             </div>
             <div>
                 <InputClones addNewItem={addTask}/>
             </div>
-
             <div>
-
                 {
                     props.data.map(m => {
-
                         const onCheckBoxHandler = (e: ChangeEvent<HTMLInputElement>) => {
                             props.changeStatus(m.id, e.currentTarget.checked, props.id)
                         }
-
-
                         const onChangeTitleHandler = (newValue: string) => {
                             props.changeTitleTask(m.id, newValue, props.id)
                         }
-
-
                         const onClickRemoveHandler = () => {
                             props.remove(m.id, props.id)
                         }
