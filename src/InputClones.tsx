@@ -5,7 +5,10 @@ import {Add} from "@material-ui/icons";
 type InputClonesType = {
     addNewItem: (titleTodolist: string) => void
 }
-export const InputClones = (props: InputClonesType) => {
+export const InputClones = React.memo( (props: InputClonesType) => {
+
+    console.log('InputClones1 render')
+
     let [titleTodolist, setTitleTodolist] = useState<string>('')
     let [error, setError] = useState<string | null>('')
     const addNewTask = () => {
@@ -15,7 +18,8 @@ export const InputClones = (props: InputClonesType) => {
         } else setError('Error')
     }
     const addNewTaskOnKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        setError(null);
+        if (error !==null) {setError(null);}
+
 
         if (13 === e.charCode) {
             addNewTask();
@@ -42,4 +46,5 @@ export const InputClones = (props: InputClonesType) => {
             <IconButton onClick={addNewTask} color={"primary"}><Add/></IconButton>
         </div>
     )
-}
+});
+

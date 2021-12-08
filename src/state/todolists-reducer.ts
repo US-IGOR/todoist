@@ -20,12 +20,12 @@ export let todolistID_2 = v1()
 
 const initialState: Array<todolistsType> =
     [
-        {id: todolistID_1, title: 'What to learn?', filter: 'all'},
-        {id: todolistID_2, title: 'What to buy?', filter: 'active'}
+/*        {id: todolistID_1, title: '*****state from Redux*****', filter: 'all'},
+        {id: todolistID_2, title: 'What to buy?', filter: 'active'}*/
     ]
 
 
-export const todolistsReducer = (state: Array<todolistsType> = initialState, action: ActionsType): Array<todolistsType> => {
+export const todolistsReducer = (state: Array<todolistsType> =  initialState, action: ActionsType): Array<todolistsType> => {
     switch (action.type) {
         case 'REMOVE-TODOLIST': {
             return state.filter(f => f.id != action.id)

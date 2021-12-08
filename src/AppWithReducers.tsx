@@ -23,13 +23,17 @@ export type TasksStateType = {
     [key: string]: Array<ArrayDataType>
 }
 
+
+
+
+
 function AppWithReducers() {
 
     let todolistID_1 = v1()
     let todolistID_2 = v1()
 
     let [todolists, dispatchToTodolistsReducer] = useReducer(todolistsReducer, [
-        {id: todolistID_1, title: 'What to learn?', filter: 'all'},
+        {id: todolistID_1, title: 'What to learn (*****state from useReduser*****)?', filter: 'all'},
         {id: todolistID_2, title: 'What to buy?', filter: 'active'}
     ])
     let [taskObj, dispatchToTasksReducer] = useReducer(tasksReducer,
